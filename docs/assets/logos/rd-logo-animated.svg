@@ -1,0 +1,37 @@
+<svg width="1200" height="400" viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="animatedStroke" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#38BDF8"/>
+      <stop offset="0.35" stop-color="#FFFFFF"/>
+      <stop offset="0.7" stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#38BDF8"/>
+      <animateTransform attributeName="gradientTransform" type="translate" from="-600 0" to="600 0" dur="4s" repeatCount="indefinite"/>
+    </linearGradient>
+    <filter id="neon" x="-20%" y="-40%" width="140%" height="180%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#38BDF8" flood-opacity="0.72"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#8B5CF6" flood-opacity="0.42"/>
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+    <style>
+      .rd-main { stroke-dasharray: 1200; stroke-dashoffset: 1200; animation: drawLogo 2.8s ease forwards, glowPulse 2.6s ease-in-out infinite 2.8s; }
+      .rd-fill { opacity: 0; animation: fadeFill 1s ease forwards 2.1s; }
+      .tagline { opacity: 0; transform: translateY(10px); animation: taglineIn 0.8s ease forwards 2.6s; }
+      .grid-line { animation: gridMove 8s linear infinite; }
+      @keyframes drawLogo { to { stroke-dashoffset: 0; } }
+      @keyframes fadeFill { to { opacity: 1; } }
+      @keyframes taglineIn { to { opacity: 1; transform: translateY(0); } }
+      @keyframes glowPulse { 0%, 100% { filter: url(#neon); opacity: 1; } 50% { filter: url(#neon); opacity: 0.88; } }
+      @keyframes gridMove { from { transform: translateX(0); } to { transform: translateX(48px); } }
+    </style>
+  </defs>
+  <rect width="1200" height="400" rx="56" fill="#020617"/>
+  <g opacity="0.18">
+    <path class="grid-line" d="M0 80 H1200 M0 160 H1200 M0 240 H1200 M0 320 H1200" stroke="#94A3B8" stroke-width="1"/>
+    <path class="grid-line" d="M96 0 V400 M192 0 V400 M288 0 V400 M384 0 V400 M480 0 V400 M576 0 V400 M672 0 V400 M768 0 V400 M864 0 V400 M960 0 V400 M1056 0 V400" stroke="#94A3B8" stroke-width="1"/>
+  </g>
+  <circle cx="250" cy="100" r="190" fill="#38BDF8" fill-opacity="0.12"/>
+  <circle cx="950" cy="310" r="210" fill="#8B5CF6" fill-opacity="0.12"/>
+  <text class="rd-main" x="600" y="238" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="132" font-weight="950" letter-spacing="-8" fill="none" stroke="url(#animatedStroke)" stroke-width="3" filter="url(#neon)">&lt; RD /&gt;</text>
+  <text class="rd-fill" x="600" y="238" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="132" font-weight="950" letter-spacing="-8" fill="#FFFFFF" fill-opacity="0.92">&lt; RD /&gt;</text>
+  <text class="tagline" x="600" y="300" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="24" font-weight="800" letter-spacing="5" fill="#94A3B8">PRACTICAL WEB SYSTEMS · REAL WORKFLOWS · AI-ASSISTED EXECUTION</text>
+</svg>

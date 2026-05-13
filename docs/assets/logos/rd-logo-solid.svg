@@ -1,0 +1,24 @@
+<svg width="1200" height="400" viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="rdGlow" x1="120" y1="40" x2="1080" y2="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#38BDF8"/>
+      <stop offset="0.48" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <radialGradient id="bgGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 200) rotate(90) scale(240 620)">
+      <stop stop-color="#38BDF8" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#020617" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-40%" width="140%" height="180%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#000000" flood-opacity="0.45"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="22" flood-color="#38BDF8" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="400" rx="56" fill="#020617"/>
+  <rect width="1200" height="400" rx="56" fill="url(#bgGlow)"/>
+  <path d="M0 320 C160 260 280 295 420 230 C570 160 730 250 880 165 C1010 90 1120 110 1200 72 V400 H0 V320Z" fill="#FFFFFF" fill-opacity="0.045"/>
+  <g filter="url(#shadow)">
+    <text x="600" y="238" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="132" font-weight="950" letter-spacing="-8" fill="url(#rdGlow)">&lt; RD /&gt;</text>
+  </g>
+  <text x="600" y="298" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="24" font-weight="800" letter-spacing="5" fill="#94A3B8">RONDEV SOFTWARE DEVELOPMENT SERVICES</text>
+</svg>
