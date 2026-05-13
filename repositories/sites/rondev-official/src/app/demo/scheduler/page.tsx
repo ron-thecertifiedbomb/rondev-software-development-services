@@ -307,10 +307,10 @@ export default function SchedulerDemoPage() {
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Link
-                href="/#contact"
-                className="rounded-full bg-cyan-300 px-6 py-3 text-center text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
-              >
+                <Link
+                  href="/#contact"
+                  className="rounded-full bg-cyan-300 px-6 py-3 text-center text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
+                >
                 Request a Custom Walkthrough
               </Link>
 

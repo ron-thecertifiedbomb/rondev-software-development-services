@@ -1,10 +1,13 @@
 "use client";
 
+import type { FormEvent } from "react";
 import { CustomCursor } from "./components/CustomCursor/CustomCursor";
-import { WhatsAppButton } from "./components/WhatsAppButton/WhatsAppButton";
+// import { WhatsAppButton } from "./components/WhatsAppButton/WhatsAppButton";
 import { useCursor } from "./hooks/useCursor";
 import { useRevealObserver } from "./hooks/useRevealObserver";
 import { HeroSection } from "./sections/HeroSection";
+import { BusinessSystemsCta } from "./components/BusinessSystemsCta/BusinessSystemsCta";
+// import { DemoAppGateway } from "./components/DemoAppGateway/DemoAppGateway";
 
 const systems = [
   {
@@ -49,7 +52,7 @@ const painPoints = [
   {
     title: "Scattered records",
     description:
-      "Important details get buried in notebooks, chat threads, paper forms, and screenshots.",
+      "Important details get buried in notebooks, chat threads, paper forms, screenshots, and spreadsheets.",
   },
   {
     title: "Slow follow-ups",
@@ -103,6 +106,12 @@ const useCases = [
   "Service Businesses",
 ];
 
+const primaryButtonClass =
+  "rounded-2xl border border-cyan-300/30 bg-cyan-300 px-5 py-3 text-center text-sm font-black text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:-translate-y-0.5 hover:bg-cyan-200 hover:shadow-cyan-400/30";
+
+const secondaryButtonClass =
+  "rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-3 text-center text-sm font-black text-white transition hover:-translate-y-0.5 hover:border-cyan-300/30 hover:bg-cyan-300/10 hover:text-cyan-100";
+
 function getStatusClass(tone: string) {
   if (tone === "emerald") {
     return "border-emerald-300/20 bg-emerald-400/10 text-emerald-300";
@@ -120,7 +129,7 @@ export default function HomePage() {
 
   useRevealObserver();
 
-  function handleDemoRequest(event: React.FormEvent<HTMLFormElement>) {
+  function handleDemoRequest(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -152,7 +161,7 @@ export default function HomePage() {
     <div className="rondev-root relative min-h-screen overflow-hidden bg-slate-950 text-white">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-[#c8f542] focus:px-4 focus:py-2 focus:font-semibold focus:text-black"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-cyan-300 focus:px-4 focus:py-2 focus:font-semibold focus:text-slate-950"
       >
         Skip to main content
       </a>
@@ -161,75 +170,95 @@ export default function HomePage() {
 
       {/* Background */}
       <div className="pointer-events-none fixed inset-0">
-        <div className="absolute left-1/2 top-[-180px] h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-blue-500/20 blur-3xl" />
+        <div className="absolute left-1/2 top-[-180px] h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl" />
         <div className="absolute bottom-[-120px] right-[-160px] h-[420px] w-[620px] rounded-full bg-emerald-400/10 blur-3xl" />
-        <div className="absolute left-[-180px] top-[46%] h-[360px] w-[520px] rounded-full bg-orange-400/10 blur-3xl" />
+        <div className="absolute left-[-180px] top-[46%] h-[360px] w-[520px] rounded-full bg-blue-400/10 blur-3xl" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.09),transparent_34%)]" />
       </div>
 
-      <WhatsAppButton />
+      {/* <WhatsAppButton /> */}
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         {/* Navbar */}
         <header className="mb-12 flex items-center justify-between gap-3 sm:mb-16">
-  <a
-    href="#"
-    className="flex min-w-0 items-center gap-3"
-    onMouseEnter={() => setCursorHover(true)}
-    onMouseLeave={() => setCursorHover(false)}
-  >
+          <a
+            href="#"
+            className="flex min-w-0 items-center gap-3"
+            onMouseEnter={() => setCursorHover(true)}
+            onMouseLeave={() => setCursorHover(false)}
+          >
+            <div className="min-w-0">
+              <p className="truncate text-sm font-semibold tracking-wide text-white">
+                RonDev Software
+              </p>
+              <p className="truncate text-xs text-slate-400">
+                Business Systems Builder
+              </p>
+            </div>
+          </a>
 
+          <nav className="hidden items-center gap-2 md:flex">
+            {[
+              ["Systems", "#systems"],
+              ["Process", "#process"],
+              ["Demo Request", "#demo"],
+            ].map(([label, href]) => (
+              <a
+                key={href}
+                href={href}
+                className="rounded-xl px-3 py-2 text-sm text-slate-300 transition hover:bg-cyan-300/10 hover:text-cyan-100"
+                onMouseEnter={() => setCursorHover(true)}
+                onMouseLeave={() => setCursorHover(false)}
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
 
-{/* <div className="inline-flex h-14 w-14 shrink-0 items-center justify-center gap-0.5 rounded-full px-2 font-mono font-black  sm:h-16 sm:w-16">
-  <span className="text-[11px] text-white sm:text-xs">&lt;</span>
-  <span className="text-md text-white sm:text-xl font-black">RD</span>
-  <span className="text-[11px] text-white sm:text-xs">/&gt;</span>
-</div> */}
-
-
-    <div className="min-w-0">
-      <p className="truncate text-sm font-semibold tracking-wide text-white">
-        RonDev Software
-      </p>
-      <p className="truncate text-xs text-slate-400">
-        Business Systems Builder
-      </p>
-    </div>
-  </a>
-
-  <nav className="hidden items-center gap-2 md:flex">
-    {[
-      ["Systems", "#systems"],
-      ["Process", "#process"],
-      ["Demo Request", "#demo"],
-    ].map(([label, href]) => (
-      <a
-        key={href}
-        href={href}
-        className="rounded-xl px-3 py-2 text-sm text-slate-300 transition hover:bg-white/[0.08] hover:text-white"
-        onMouseEnter={() => setCursorHover(true)}
-        onMouseLeave={() => setCursorHover(false)}
-      >
-        {label}
-      </a>
-    ))}
-  </nav>
-
-  <a
-    href="https://rondev.com.ph/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="hidden rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/[0.12] sm:inline-flex"
-    onMouseEnter={() => setCursorHover(true)}
-    onMouseLeave={() => setCursorHover(false)}
-  >
-    Visit Site
-  </a>
-</header>
+          <a
+            href="https://rondev.com.ph/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden rounded-2xl border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-100 transition hover:bg-cyan-300/20 sm:inline-flex"
+            onMouseEnter={() => setCursorHover(true)}
+            onMouseLeave={() => setCursorHover(false)}
+          >
+            Visit Site
+          </a>
+        </header>
 
         <main id="main-content">
           {/* Hero */}
-    <HeroSection />
+          <HeroSection />
+
+<BusinessSystemsCta />
+
+{/* <DemoAppGateway /> */}
+          {/* Local identity / Rondev mission */}
+          <section className="mb-20 rounded-[2rem] border border-cyan-300/10 bg-cyan-300/[0.04] p-7 shadow-2xl shadow-cyan-950/20 backdrop-blur">
+            <div className="mb-4 inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs font-bold text-cyan-200">
+              Homegrown in San Jose del Monte
+            </div>
+
+            <h2 className="max-w-4xl text-3xl font-black tracking-[-0.04em] text-white sm:text-5xl">
+              Small businesses are not lacking effort. Many of them are lacking
+              systems.
+            </h2>
+
+            <p className="mt-5 max-w-4xl text-sm leading-7 text-slate-300 sm:text-base">
+              Rondev is built from local observation — bookings written on
+              paper, customer records remembered by face, follow-ups handled
+              through chat, and daily operations managed through notebooks,
+              screenshots, and memory.
+            </p>
+
+            <p className="mt-4 max-w-4xl text-sm leading-7 text-slate-300 sm:text-base">
+              Using computer science and AI-assisted workflows, Rondev creates
+              practical digital demos that help business owners see what better
+              systems can look like before they commit to a custom solution.
+            </p>
+          </section>
+
           {/* Problem */}
           <section className="mb-20 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="rounded-[2rem] border border-white/10 bg-white/[0.06] p-7 shadow-2xl shadow-black/20 backdrop-blur">
@@ -268,7 +297,7 @@ export default function HomePage() {
           </section>
 
           {/* Systems */}
-          <section id="systems" className="mb-20">
+          {/* <section id="systems" className="mb-20">
             <div className="mb-8 max-w-3xl">
               <div className="mb-4 inline-flex rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs font-bold text-emerald-200">
                 Sample Systems
@@ -291,8 +320,16 @@ export default function HomePage() {
                   key={system.title}
                   className="group flex min-h-[320px] flex-col rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 shadow-xl shadow-black/10 backdrop-blur transition hover:-translate-y-1 hover:bg-white/[0.09]"
                 >
-                  <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl bg-white text-2xl">
+                  <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-2xl shadow-lg shadow-cyan-950/30">
                     {system.icon}
+                  </div>
+
+                  <div
+                    className={`mb-4 inline-flex w-fit rounded-full border px-3 py-1 text-[11px] font-black ${getStatusClass(
+                      system.tone
+                    )}`}
+                  >
+                    {system.status}
                   </div>
 
                   <h3 className="text-lg font-black text-white">
@@ -303,13 +340,13 @@ export default function HomePage() {
                     {system.description}
                   </p>
 
-                  <p className="mt-auto pt-6 text-sm font-black text-blue-200 transition group-hover:text-white">
+                  <p className="mt-auto pt-6 text-sm font-black text-cyan-200 transition group-hover:text-white">
                     {system.tag} →
                   </p>
                 </article>
               ))}
             </div>
-          </section>
+          </section> */}
 
           {/* Process */}
           <section
@@ -337,7 +374,7 @@ export default function HomePage() {
                   key={step.number}
                   className="flex gap-4 rounded-2xl border border-white/10 bg-slate-950/50 p-5"
                 >
-                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl border border-blue-300/20 bg-blue-400/10 text-sm font-black text-blue-200">
+                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-sm font-black text-cyan-200">
                     {step.number}
                   </div>
 
@@ -368,7 +405,7 @@ export default function HomePage() {
               {useCases.map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-sm font-bold text-slate-200"
+                  className="rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-sm font-bold text-slate-200 transition hover:border-cyan-300/20 hover:bg-cyan-300/10 hover:text-cyan-100"
                 >
                   {item}
                 </span>
@@ -387,13 +424,15 @@ export default function HomePage() {
               </div>
 
               <h2 className="text-3xl font-black tracking-[-0.04em] text-white sm:text-5xl">
-                Want to see how a system can fit your business?
+                Want to see what a practical system could look like for your
+                business?
               </h2>
 
               <p className="mt-5 text-sm leading-7 text-slate-300">
-                Send us your business type and current manual process. We can
-                show a quick demo and suggest a simple MVP system that fits your
-                workflow.
+                Tell us your business type and current manual process. Rondev
+                can show a simple demo workflow based on your actual needs —
+                whether it is booking, customer records, kiosk ordering, service
+                requests, attendance, or follow-ups.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -401,7 +440,7 @@ export default function HomePage() {
                   href="https://wa.me/639913817033"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-2xl bg-white px-5 py-3 text-center text-sm font-black text-slate-950 transition hover:bg-slate-100"
+                  className={primaryButtonClass}
                   onMouseEnter={() => setCursorHover(true)}
                   onMouseLeave={() => setCursorHover(false)}
                 >
@@ -410,7 +449,7 @@ export default function HomePage() {
 
                 <a
                   href="mailto:office@rondev.com.ph?subject=Quick Demo Request"
-                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-3 text-center text-sm font-black text-white transition hover:bg-white/[0.12]"
+                  className={secondaryButtonClass}
                   onMouseEnter={() => setCursorHover(true)}
                   onMouseLeave={() => setCursorHover(false)}
                 >
@@ -435,7 +474,7 @@ export default function HomePage() {
                   name="business"
                   placeholder="Example: ABC Clinic"
                   required
-                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-blue-400/60 focus:ring-4 focus:ring-blue-400/10"
+                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400/60 focus:ring-4 focus:ring-cyan-400/10"
                 />
               </div>
 
@@ -450,7 +489,7 @@ export default function HomePage() {
                   id="type"
                   name="type"
                   required
-                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm text-white outline-none transition focus:border-blue-400/60 focus:ring-4 focus:ring-blue-400/10"
+                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-400/60 focus:ring-4 focus:ring-cyan-400/10"
                 >
                   <option className="text-slate-950" value="">
                     Select business type
@@ -483,13 +522,13 @@ export default function HomePage() {
                   name="need"
                   placeholder="Example: We handle appointments through Messenger and manual lists."
                   required
-                  className="min-h-28 resize-y rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-blue-400/60 focus:ring-4 focus:ring-blue-400/10"
+                  className="min-h-28 resize-y rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400/60 focus:ring-4 focus:ring-cyan-400/10"
                 />
               </div>
 
               <button
                 type="submit"
-                className="rounded-2xl bg-white px-5 py-3 text-sm font-black text-slate-950 transition hover:bg-slate-100"
+                className={primaryButtonClass}
                 onMouseEnter={() => setCursorHover(true)}
                 onMouseLeave={() => setCursorHover(false)}
               >
@@ -504,51 +543,30 @@ export default function HomePage() {
           </section>
 
           {/* Final CTA */}
-        {/* Final CTA */}
-        <section className="mb-8 rounded-[2rem] border border-white/10 bg-white/[0.08] p-8 text-center shadow-2xl shadow-black/30 backdrop-blur sm:p-12">
-            <div className="mb-4 inline-flex rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs font-bold text-emerald-200">
-              RonDev Software Development Services
-            </div>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+  <a
+    href="https://wa.me/639913817033"
+    target="_blank"
+    rel="noopener noreferrer"
+    className={primaryButtonClass}
+    onMouseEnter={() => setCursorHover(true)}
+    onMouseLeave={() => setCursorHover(false)}
+  >
+    PM Us for a Quick Demo
+  </a>
 
-            <h2 className="mx-auto max-w-4xl text-3xl font-black tracking-[-0.04em] text-white sm:text-5xl">
-              Fast deployment. Highly customizable. Built for your workflow.
-            </h2>
-
-            <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
-              We build practical business systems that help reduce manual work
-              and make operations easier to manage.
-            </p>
-
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <a
-                href="https://wa.me/639913817033"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-2xl bg-white px-5 py-3 text-sm font-black text-slate-950 transition hover:bg-slate-100"
-                onMouseEnter={() => setCursorHover(true)}
-                onMouseLeave={() => setCursorHover(false)}
-              >
-                PM Us for a Quick Demo
-              </a>
-
-              <a
-                href="https://rondev.com.ph"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-black text-white transition hover:bg-white/[0.12]"
-                onMouseEnter={() => setCursorHover(true)}
-                onMouseLeave={() => setCursorHover(false)}
-              >
-                Visit rondev.com.ph
-              </a>
-            </div>
-          </section>
+  <a
+    href="https://rondev.com.ph/demo/scheduler"
+    target="_blank"
+    rel="noopener noreferrer"
+    className={secondaryButtonClass}
+    onMouseEnter={() => setCursorHover(true)}
+    onMouseLeave={() => setCursorHover(false)}
+  >
+    View Demo Showcase
+  </a>
+</div>
         </main>
-
-        <footer className="flex flex-col justify-between gap-3 border-t border-white/10 py-6 text-xs text-slate-500 sm:flex-row">
-          <p>© 2026 RonDev Software Development Services</p>
-          <p>Business systems • Automation • Custom software</p>
-        </footer>
       </div>
     </div>
   );
