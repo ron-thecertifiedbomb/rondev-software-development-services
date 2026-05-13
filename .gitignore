@@ -102,4 +102,8 @@ supabase/.temp/
 .dev.vars
 
 # Keep safe environment templates
-!env-variables/*.example.env
+env-variables/
+
+.env.example
+.env.local
+
