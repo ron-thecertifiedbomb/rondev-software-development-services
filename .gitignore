@@ -1,0 +1,105 @@
+# ==================================================
+# Rondev Software Development Services .gitignore
+# Monorepo: sites, demos, marketing tools, AI lab
+# ==================================================
+
+# Environment files / secrets
+.env
+.env.*
+!.env.example
+!*.example.env
+
+# Secret-looking files
+*secret*
+*secrets*
+*password*
+*passwords*
+*credentials*
+*credential*
+*token*
+*tokens*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Node / Next.js / React
+node_modules/
+.next/
+out/
+dist/
+build/
+.vercel/
+.turbo/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Package manager cache
+.pnpm-store/
+.yarn/
+.yarn-cache/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / editor
+.vscode/
+.idea/
+
+# Temporary files
+tmp/
+temp/
+.cache/
+
+# Local AI / Ollama / model data
+models/
+ollama-data/
+*.gguf
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.onnx
+
+# Generated / exported / backup files
+generated/
+exports/
+backups/
+*.bak
+
+# Local mail testing / email outputs
+sent-mails/
+mail-output/
+
+# Supabase local generated files
+.supabase/
+supabase/.branches/
+supabase/.temp/
+
+# Vercel local files
+.vercel/
+
+# Cloudflare local files
+.wrangler/
+.dev.vars
+
+# Keep safe environment templates
+!env-variables/*.example.env
