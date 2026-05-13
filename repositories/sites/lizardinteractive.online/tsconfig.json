@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    // ── Module Resolution ──────────────────────────────────────────────────────
+    "baseUrl": ".",
+    "paths": { "@/*": ["./*"] },
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+
+    // ── Language & Target ──────────────────────────────────────────────────────
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "react-jsx",
+
+    // ── Type Checking ──────────────────────────────────────────────────────────
+    // NOTE: strict is off to unblock legacy code — enable per-module as you refactor
+    "strict": false,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true, // catches Linux vs Windows path bugs
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+
+    // ── Type Declarations ──────────────────────────────────────────────────────
+    "types": ["@types/react", "@ai-sdk/react"],
+
+    // ── Performance ────────────────────────────────────────────────────────────
+    "incremental": true,
+
+    // ── Compatibility ──────────────────────────────────────────────────────────
+    // ignoreDeprecations silences TS5 breaking-change warnings from older configs
+    "ignoreDeprecations": "5.0"
+  },
+
+  // ── Include ───────────────────────────────────────────────────────────────────
+  // Note: non-.ts entries (mp4, api route dir) have no effect on compilation —
+  // remove them to keep include clean and intentional
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+
+  // ── Exclude ───────────────────────────────────────────────────────────────────
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>RonDev Software Development Services</title>
+
+  <meta
+    name="description"
+    content="RonDev builds fast-deploy, highly customizable business systems for booking, attendance, queueing, kiosk ordering, barangay requests, and custom workflows."
+  />
+
+  <style>
+    :root {
+      --bg: #020617;
+      --card: rgba(255, 255, 255, 0.06);
+      --card-strong: rgba(255, 255, 255, 0.1);
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #ffffff;
+      --muted: #94a3b8;
+      --muted2: #cbd5e1;
+      --blue: #60a5fa;
+      --emerald: #34d399;
+      --amber: #fbbf24;
+      --orange: #fb923c;
+      --red: #f87171;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    .page {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(70px);
+      opacity: 0.8;
+    }
+
+    .glow-blue {
+      width: 820px;
+      height: 520px;
+      left: 50%;
+      top: -180px;
+      transform: translateX(-50%);
+      background: rgba(59, 130, 246, 0.22);
+    }
+
+    .glow-emerald {
+      width: 620px;
+      height: 420px;
+      right: -160px;
+      bottom: -120px;
+      background: rgba(52, 211, 153, 0.13);
+    }
+
+    .glow-orange {
+      width: 520px;
+      height: 360px;
+      left: -180px;
+      top: 46%;
+      background: rgba(251, 146, 60, 0.12);
+    }
+
+    .radial {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.09), transparent 34%),
+        radial-gradient(circle at 80% 20%, rgba(59,130,246,0.08), transparent 28%);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: min(1220px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 42px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 72px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 80px;
+      height: 80px;
+      flex: none;
+      border-radius: 18px;
+      /* background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 16px 35px rgba(59, 130, 246, 0.12); */
+      overflow: hidden;
+    }
+
+    .brand-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-sub {
+      margin-top: 2px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      padding: 10px 13px;
+      border-radius: 14px;
+      color: var(--muted2);
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.08);
+      color: white;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 16px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      font-size: 14px;
+      font-weight: 750;
+      transition: 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 80px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(96, 165, 250, 0.25);
+      background: rgba(96, 165, 250, 0.1);
+      color: #bfdbfe;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      font-weight: 850;
+      max-width: 900px;
+    }
+
+    .hero-copy {
+      margin-top: 24px;
+      max-width: 690px;
+      color: var(--muted2);
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .hero-sub {
+      margin-top: 14px;
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      border: 1px solid transparent;
+      font-size: 14px;
+      font-weight: 850;
+      overflow: hidden;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: #0f172a;
+      box-shadow: 0 18px 40px rgba(59, 130, 246, 0.12);
+    }
+
+    .btn-primary:hover {
+      background: #f1f5f9;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      color: white;
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 38px;
+      max-width: 680px;
+    }
+
+    .metric {
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 28px;
+      color: white;
+      margin-bottom: 5px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hero-panel {
+      border-radius: 34px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      padding: 14px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .dashboard {
+      overflow: hidden;
+      border-radius: 26px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.92);
+    }
+
+    .dashboard-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dashboard-title {
+      font-size: 14px;
+      font-weight: 850;
+    }
+
+    .dashboard-sub {
+      margin-top: 3px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .live-badge {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(52, 211, 153, 0.12);
+      color: #6ee7b7;
+      border: 1px solid rgba(52, 211, 153, 0.24);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .system-list {
+      display: grid;
+      gap: 12px;
+      padding: 18px;
+    }
+
+    .system-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 15px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.045);
+    }
+
+    .system-row h3 {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .system-row p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .status {
+      flex: none;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 850;
+      border: 1px solid transparent;
+    }
+
+    .status.green {
+      color: #6ee7b7;
+      background: rgba(52, 211, 153, 0.12);
+      border-color: rgba(52, 211, 153, 0.24);
+    }
+
+    .status.blue {
+      color: #93c5fd;
+      background: rgba(96, 165, 250, 0.12);
+      border-color: rgba(96, 165, 250, 0.24);
+    }
+
+    .status.amber {
+      color: #fcd34d;
+      background: rgba(251, 191, 36, 0.12);
+      border-color: rgba(251, 191, 36, 0.24);
+    }
+
+    .dashboard-foot {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding: 18px;
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .mini-stat {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .mini-stat span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .mini-stat strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 22px;
+    }
+
+    .section {
+      margin-bottom: 76px;
+    }
+
+    .section-top {
+      max-width: 780px;
+      margin-bottom: 28px;
+    }
+
+    .section-label {
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(52, 211, 153, 0.22);
+      background: rgba(52, 211, 153, 0.09);
+      color: #a7f3d0;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .section-copy {
+      margin-top: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 22px;
+    }
+
+    .glass {
+      border-radius: 32px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      box-shadow: 0 18px 55px rgba(0,0,0,0.18);
+      backdrop-filter: blur(16px);
+    }
+
+    .pain-card {
+      padding: 28px;
+    }
+
+    .pain-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .pain-item {
+      padding: 22px;
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .bang {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 14px;
+      border-radius: 16px;
+      background: rgba(248, 113, 113, 0.1);
+      color: #fecaca;
+      font-weight: 900;
+    }
+
+    .pain-item h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .pain-item p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+      margin: 9px 0 0;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .product-card {
+      padding: 22px;
+      min-height: 310px;
+      display: flex;
+      flex-direction: column;
+      border-radius: 32px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      backdrop-filter: blur(16px);
+      transition: 0.22s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.09);
+    }
+
+    .icon {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      margin-bottom: 18px;
+      border-radius: 20px;
+      background: #ffffff;
+      color: #0f172a;
+      font-size: 26px;
+    }
+
+    .product-card h3 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .product-card p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 13px;
+    }
+
+    .product-card .tagline {
+      margin-top: auto;
+      color: #bfdbfe;
+      font-weight: 850;
+      font-size: 13px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 28px;
+      padding: 30px;
+    }
+
+    .step-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      padding: 20px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: rgba(2, 6, 23, 0.52);
+    }
+
+    .step-num {
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      background: rgba(96, 165, 250, 0.1);
+      color: #bfdbfe;
+      border: 1px solid rgba(96,165,250,0.2);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .step h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .step p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 13px;
+    }
+
+    .usecases {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      color: #e2e8f0;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .lead-box {
+      display: grid;
+      grid-template-columns: 1fr 0.8fr;
+      gap: 26px;
+      align-items: start;
+      padding: 30px;
+    }
+
+    .lead-form {
+      display: grid;
+      gap: 12px;
+      padding: 20px;
+      border-radius: 26px;
+      background: rgba(2, 6, 23, 0.6);
+      border: 1px solid var(--border);
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    label {
+      color: var(--muted2);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      outline: none;
+      border-radius: 16px;
+      padding: 13px 14px;
+      background: rgba(255,255,255,0.06);
+      color: white;
+      transition: 0.2s ease;
+    }
+
+    select option {
+      color: #0f172a;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(96, 165, 250, 0.55);
+      box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.12);
+    }
+
+    textarea {
+      min-height: 105px;
+      resize: vertical;
+    }
+
+    .form-note {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .final-cta {
+      text-align: center;
+      padding: 46px 30px;
+    }
+
+    .final-cta p {
+      max-width: 700px;
+      margin: 18px auto 0;
+      color: var(--muted2);
+      line-height: 1.8;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-top: 1px solid var(--border);
+      padding: 24px 0 0;
+      color: #64748b;
+      font-size: 12px;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 20;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 16px;
+      border-radius: 999px;
+      background: #22c55e;
+      color: #052e16;
+      font-size: 14px;
+      font-weight: 900;
+      box-shadow: 0 16px 40px rgba(34,197,94,0.25);
+    }
+
+    @media (max-width: 1080px) {
+      .hero,
+      .grid-2,
+      .steps,
+      .lead-box {
+        grid-template-columns: 1fr;
+      }
+
+      .products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(100% - 24px, 1220px);
+        padding-top: 16px;
+      }
+
+      .nav {
+        margin-bottom: 46px;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .hero {
+        margin-bottom: 56px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .metrics,
+      .dashboard-foot,
+      .pain-list,
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .product-card {
+        min-height: auto;
+      }
+
+      .system-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .status {
+        align-self: flex-start;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+
+      .whatsapp-float {
+        left: 14px;
+        right: 14px;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="bg">
+      <div class="glow glow-blue"></div>
+      <div class="glow glow-emerald"></div>
+      <div class="glow glow-orange"></div>
+      <div class="radial"></div>
+    </div>
+
+    <a class="whatsapp-float" href="https://wa.me/639913817033" target="_blank" rel="noopener">
+      💬 PM for Quick Demo
+    </a>
+
+    <div class="container">
+      <header class="nav">
+        <a href="#" class="brand">
+          <div class="brand-mark">
+            <img src="public/rondev-logo.png" alt="RonDev Software logo" class="brand-img" />
+          </div>
+<!-- 
+          <div class="brand-text">
+            <div class="brand-name">RonDev Software</div>
+            <div class="brand-sub">Business Systems Builder</div>
+          </div> -->
+        </a>
+
+        <nav class="nav-links">
+          <a href="#systems">Systems</a>
+          <a href="#process">Process</a>
+          <a href="#demo">Demo Request</a>
+        </nav>
+
+        <a class="nav-cta" href="https://rondev.com.ph" target="_blank" rel="noopener">
+          Visit rondev.com.ph
+        </a>
+      </header>
+
+      <section class="hero">
+        <div>
+          <div class="pill">⚡ Fast Deployment • Highly Customizable • Built for Businesses</div>
+
+          <h1>Turn your manual workflow into a working business system.</h1>
+
+          <p class="hero-copy">
+            RonDev builds fast-deploy systems for booking, employee attendance,
+            queue management, food ordering kiosks, barangay requests, records,
+            dashboards, and custom business workflows.
+          </p>
+
+          <p class="hero-sub">
+            Stop relying only on spreadsheets, paper forms, screenshots,
+            Messenger threads, and manual lists. Let a system handle the
+            repetitive work.
+          </p>
+
+          <div class="actions">
+            <a class="btn btn-primary" href="#demo">Request a Quick Demo</a>
+            <a class="btn btn-secondary" href="https://wa.me/639913817033" target="_blank" rel="noopener">
+              WhatsApp: 0991 381 7033
+            </a>
+          </div>
+
+          <div class="metrics">
+            <div class="metric">
+              <strong>Fast</strong>
+              <span>MVP deployment</span>
+            </div>
+            <div class="metric">
+              <strong>Custom</strong>
+              <span>Built for your workflow</span>
+            </div>
+            <div class="metric">
+              <strong>Local</strong>
+              <span>Business-focused support</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <div class="dashboard">
+            <div class="dashboard-head">
+              <div>
+                <div class="dashboard-title">Business Systems Dashboard</div>
+                <div class="dashboard-sub">Sample operational overview</div>
+              </div>
+              <div class="live-badge">Live Demo</div>
+            </div>
+
+            <div class="system-list">
+              <div class="system-row">
+                <div>
+                  <h3>Online Booking System</h3>
+                  <p>Appointments, available slots, admin calendar</p>
+                </div>
+                <span class="status green">Ready</span>
+              </div>
+
+              <div class="system-row">
+                <div>
+                  <h3>Smart Time Clock</h3>
+                  <p>Time in, time out, logs, active shifts</p>
+                </div>
+                <span class="status blue">Tracking</span>
+              </div>
+
+              <div class="system-row">
+                <div>
+                  <h3>Food Kiosk MVP</h3>
+                  <p>Tablet ordering, cart, receipt, counter pickup</p>
+                </div>
+                <span class="status amber">Demo</span>
+              </div>
+
+              <div class="system-row">
+                <div>
+                  <h3>QueueFlow System</h3>
+                  <p>Ticket numbers, counter display, queue dashboard</p>
+                </div>
+                <span class="status green">Concept</span>
+              </div>
+            </div>
+
+            <div class="dashboard-foot">
+              <div class="mini-stat">
+                <span>Manual tasks</span>
+                <strong style="color:#fca5a5;">Less</strong>
+              </div>
+              <div class="mini-stat">
+                <span>Records</span>
+                <strong style="color:#93c5fd;">Clear</strong>
+              </div>
+              <div class="mini-stat">
+                <span>Workflow</span>
+                <strong style="color:#6ee7b7;">Faster</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section grid-2">
+        <div class="glass pain-card">
+          <span class="section-label" style="border-color:rgba(248,113,113,0.25);background:rgba(248,113,113,0.1);color:#fecaca;">
+            The Problem
+          </span>
+          <h2>Manual work is costing your business time.</h2>
+          <p class="section-copy">
+            Many businesses still depend on chat messages, screenshots, paper
+            forms, spreadsheets, and manual checking. That works at first —
+            until customers increase, staff gets busy, and records become hard
+            to manage.
+          </p>
+        </div>
+
+        <div class="pain-list">
+          <div class="pain-item">
+            <div class="bang">!</div>
+            <h3>Scattered records</h3>
+            <p>Important details get buried in notebooks, chat threads, and screenshots.</p>
+          </div>
+
+          <div class="pain-item">
+            <div class="bang">!</div>
+            <h3>Slow follow-ups</h3>
+            <p>Staff spend too much time checking, replying, and repeating the same tasks.</p>
+          </div>
+
+          <div class="pain-item">
+            <div class="bang">!</div>
+            <h3>Customer confusion</h3>
+            <p>Bookings, queues, requests, and orders can become unclear without a system.</p>
+          </div>
+
+          <div class="pain-item">
+            <div class="bang">!</div>
+            <h3>Hard to scale</h3>
+            <p>Manual workflows become harder to manage as your business gets busier.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="systems" class="section">
+        <div class="section-top">
+          <span class="section-label">Sample Systems</span>
+          <h2>Showcase systems we can customize for your business.</h2>
+          <p class="section-copy">
+            Each system is designed around a real business pain point: bookings,
+            attendance, customer queues, kiosk orders, document requests, and
+            repetitive workflows.
+          </p>
+        </div>
+
+        <div class="products">
+          <article class="product-card">
+            <div class="icon">📅</div>
+            <h3>Online Booking System</h3>
+            <p>
+              Let customers book online, choose services, select available time
+              slots, and help your team avoid double bookings.
+            </p>
+            <div class="tagline">For clinics, salons, spas, service businesses →</div>
+          </article>
+
+          <article class="product-card">
+            <div class="icon">⏱️</div>
+            <h3>Smart Time Clock</h3>
+            <p>
+              Track employee time in, time out, active shifts, late records,
+              and attendance logs in one dashboard.
+            </p>
+            <div class="tagline">For stores, offices, restaurants, teams →</div>
+          </article>
+
+          <article class="product-card">
+            <div class="icon">🍔</div>
+            <h3>Food Kiosk MVP</h3>
+            <p>
+              Tablet self-ordering system where customers choose items, review
+              orders, confirm checkout, and receive a receipt.
+            </p>
+            <div class="tagline">For food stalls, cafes, canteens →</div>
+          </article>
+
+          <article class="product-card">
+            <div class="icon">🎫</div>
+            <h3>QueueFlow System</h3>
+            <p>
+              Digital queue display for ticket numbers, counter assignments,
+              waiting status, and serving updates.
+            </p>
+            <div class="tagline">For clinics, barangays, payment centers →</div>
+          </article>
+        </div>
+      </section>
+
+      <section id="process" class="section glass steps">
+        <div>
+          <span class="section-label" style="border-color:rgba(96,165,250,0.25);background:rgba(96,165,250,0.1);color:#bfdbfe;">
+            Simple Process
+          </span>
+          <h2>From manual workflow to working MVP.</h2>
+          <p class="section-copy">
+            The goal is not to overcomplicate your business. The goal is to
+            build a useful system that your team can actually use.
+          </p>
+        </div>
+
+        <div class="step-list">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div>
+              <h3>Tell us your workflow</h3>
+              <p>We identify the repetitive manual tasks slowing down your business.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">02</div>
+            <div>
+              <h3>We build your MVP system</h3>
+              <p>We create a fast, clean, and customized system based on your actual needs.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">03</div>
+            <div>
+              <h3>You start using it</h3>
+              <p>Your team gets a better way to manage records, bookings, requests, or attendance.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-top">
+          <span class="section-label" style="border-color:rgba(251,191,36,0.25);background:rgba(251,191,36,0.1);color:#fde68a;">
+            Best For
+          </span>
+          <h2>Useful for local businesses with repeated manual work.</h2>
+        </div>
+
+        <div class="usecases">
+          <span class="chip">Veterinary Clinics</span>
+          <span class="chip">Dental Clinics</span>
+          <span class="chip">Retail Stores</span>
+          <span class="chip">Restaurants</span>
+          <span class="chip">Cafes</span>
+          <span class="chip">Salons</span>
+          <span class="chip">Warehouses</span>
+          <span class="chip">Barangays</span>
+          <span class="chip">Payment Centers</span>
+          <span class="chip">Repair Shops</span>
+          <span class="chip">Service Businesses</span>
+        </div>
+      </section>
+
+      <section id="demo" class="section glass lead-box">
+        <div>
+          <span class="section-label">Quick Demo</span>
+          <h2>Want to see how a system can fit your business?</h2>
+          <p class="section-copy">
+            Send us your business type and current manual process. We can show
+            a quick demo and suggest a simple MVP system that fits your workflow.
+          </p>
+
+          <div class="actions">
+            <a class="btn btn-primary" href="https://wa.me/639913817033" target="_blank" rel="noopener">
+              Message on WhatsApp
+            </a>
+            <a class="btn btn-secondary" href="mailto:office@rondev.com.ph?subject=Quick Demo Request">
+              Email RonDev
+            </a>
+          </div>
+        </div>
+
+        <form class="lead-form" onsubmit="handleDemoRequest(event)">
+          <div class="field">
+            <label for="business">Business Name</label>
+            <input id="business" name="business" placeholder="Example: ABC Clinic" required />
+          </div>
+
+          <div class="field">
+            <label for="type">Business Type</label>
+            <select id="type" name="type" required>
+              <option value="">Select business type</option>
+              <option>Clinic / Dental / Vet</option>
+              <option>Restaurant / Cafe / Food Stall</option>
+              <option>Retail Store</option>
+              <option>Salon / Spa</option>
+              <option>Barangay / Local Office</option>
+              <option>Service Business</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="need">What manual process do you want to improve?</label>
+            <textarea id="need" name="need" placeholder="Example: We handle appointments through Messenger and manual lists." required></textarea>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Create WhatsApp Demo Message</button>
+
+          <p class="form-note">
+            This form opens WhatsApp with a prepared message. No backend needed
+            for this demo landing page.
+          </p>
+        </form>
+      </section>
+
+      <section class="section glass final-cta">
+        <span class="section-label">RonDev Software Development Services</span>
+        <h2>Fast deployment. Highly customizable. Built for your workflow.</h2>
+        <p>
+          We build practical business systems that help reduce manual work and
+          make operations easier to manage.
+        </p>
+
+        <div class="actions" style="justify-content:center;">
+          <a class="btn btn-primary" href="https://wa.me/639913817033" target="_blank" rel="noopener">
+            PM Us for a Quick Demo
+          </a>
+          <a class="btn btn-secondary" href="https://rondev.com.ph" target="_blank" rel="noopener">
+            Visit rondev.com.ph
+          </a>
+        </div>
+      </section>
+
+      <footer>
+        <span>© 2026 RonDev Software Development Services</span>
+        <span>Business systems • Automation • Custom software</span>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    function handleDemoRequest(event) {
+      event.preventDefault();
+
+      const form = event.currentTarget;
+      const business = form.business.value.trim();
+      const type = form.type.value.trim();
+      const need = form.need.value.trim();
+
+      const message = [
+        "Hi RonDev!",
+        "",
+        "I would like to request a quick demo.",
+        "",
+        "Business Name: " + business,
+        "Business Type: " + type,
+        "Current Manual Process: " + need,
+        "",
+        "Please show me what system may fit our workflow."
+      ].join("\n");
+
+      const url = "https://wa.me/639913817033?text=" + encodeURIComponent(message);
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+  </script>
+</body>
+</html>
